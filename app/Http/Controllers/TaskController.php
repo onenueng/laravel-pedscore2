@@ -76,8 +76,8 @@ class TaskController extends Controller
             $task->file_upload = $filename['basename'];
             $task->update();
             //return Storage::download($path);//ให้สามารถdownload file ได้
-            $crqimport = new \App\Imports\CrqImport();
-            $crqimport->import(storage_path('app/public'.$path));
+            // $crqimport = new \App\Imports\CrqImport();
+            // $crqimport->import(storage_path('app/public'.$path));
 
             return Storage::url($path);
         }else{
