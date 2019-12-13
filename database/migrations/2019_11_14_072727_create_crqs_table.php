@@ -18,8 +18,8 @@ class CreateCrqsTable extends Migration
             $table->string('sap_id');
             $table->string('full_name');
             $table->string('subject');
-            $table->interger('academic_year');
-            $table->interger('class');
+            $table->integer('academic_year');
+            $table->integer('class');
             $table->float('no1');
             $table->float('no2');
             $table->float('no3');
@@ -33,8 +33,8 @@ class CreateCrqsTable extends Migration
             $table->float('no11');
             $table->float('no12');
             $table->float('no13');
-            $table->float('no14');
-            $table->float('no15');
+            $table->float('no14')->nullable();
+            $table->float('no15')->nullable();
             $table->float('total');
             $table->float('percent');
             $table->timestamps();

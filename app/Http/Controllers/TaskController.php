@@ -71,15 +71,20 @@ class TaskController extends Controller
         ]);
         $task = Task::create($request->all());    //function create รับ request all มาแล้วบันทึกลงฐานข้อมูล แต่ต้องเขียน fillable ที่ model  
         if($request->hasFile('file_upload')){
-            $path = $request->file('file_upload')->store('/public');
+            $path = $request->file('file_upload')->store('/public');//เก็บ file ลงใน storage/app/public
+
             $filename = pathinfo($path );//save ชื่อ file ลงใน DB
+
             $task->file_upload = $filename['basename'];
             $task->update();
+            
             //return Storage::download($path);//ให้สามารถdownload file ได้
-            // $crqimport = new \App\Imports\CrqImport();
-            // $crqimport->import(storage_path('app/public'.$path));
+             
+            $crqimport = new \App\Imports\CrqImport();
+            $crqimport->import(storage_path('app/'.$path));
 
-            return Storage::url($path);
+
+            return Storage::url($path); //return url ที่เข้าถึง file นั้นมาให้
         }else{
             return 'no file';
         }

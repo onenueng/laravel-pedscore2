@@ -6,7 +6,8 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Crq;
+use App\Crq;  //use class model ของ crq 
+// use Illuminate\Support\Facades\Validator;
 
 
 class CrqImport implements ToCollection, WithHeadingRow
@@ -17,10 +18,14 @@ class CrqImport implements ToCollection, WithHeadingRow
     */
     public function collection(Collection $collection)
     {
-        foreach($collection as $row)
+        // validator::make($collection->toArray(),[
+        //     '*.sap_id'=> 'required'
+        // ]->validate();
+
+        foreach($collection as $row)//วน loop เพื่อ create ขัอมูล
         {
             Crq::create([
-            'id_card' => $row['id_card'],
+            'id' => $row['id'],
             'sap_id'=> $row['sap_id'],
             'full_name' => $row['full_name'],
             'subject'=> $row['subject'],
@@ -43,9 +48,6 @@ class CrqImport implements ToCollection, WithHeadingRow
             'no15' => $row ['no15'],
             'total' => $row['total'],
             'percent' => $row['percent']
-
-
-            
             ]);
         }
     }
