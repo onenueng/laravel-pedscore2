@@ -59,12 +59,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
+        // return $request->all();
         // $task = new App\Task(); //รับ request ทีละตัวเพื่อเก็บลงฐานข้อมูล
         // $task->year = $request->year;
         // $task->subject = $request->subject;
         // $task->save();     
-
+        
         $validaton = $request->validate([
             'year' =>'required',
             'subject' => 'required'
@@ -78,13 +78,17 @@ class TaskController extends Controller
             $task->file_upload = $filename['basename'];
             $task->update();
             
-            //return Storage::download($path);//ให้สามารถdownload file ได้
+            // return Storage::download($path);//ให้สามารถdownload file ได้
              
-            $crqimport = new \App\Imports\CrqImport();
+            $crqimport = new \App\Imports\CrqImport(); 
             $crqimport->import(storage_path('app/'.$path));
 
-
+            Log::info('Showing crq data for user: '.$crqimport);
+                  
             return Storage::url($path); //return url ที่เข้าถึง file นั้นมาให้
+
+            return $crqimport;
+            
         }else{
             return 'no file';
         }

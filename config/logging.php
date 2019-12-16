@@ -1,7 +1,13 @@
 <?php
 
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogUdpHandler;
+namespace App\Http\Controllers;
+namespace App\Imports;
+
+use \App\Task;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+
+use Monolog\Handler\StreamHandler; 
 
 return [
 
@@ -92,3 +98,12 @@ return [
     ],
 
 ];
+
+class CrqImport extends Controller{
+    public function showProfile($crqimport)
+    {
+        Log::info('Showing crq data for user: '.$crqimport);
+
+        return view('user.profile',['crq'=> crqimport::findOrFail($crqimport)]);
+    }    
+}
