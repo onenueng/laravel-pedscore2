@@ -24,6 +24,13 @@ Route::post('/store', 'TaskController@store');
 
 Route::get('/tasks/{id}','TaskController@edit');
 
-Route::put('/tasks/{id}','TaskController@update');
+Route::put('/tasks/{id}','TaskController@update'); 
 
 Route::patch('tasks/{task}','TaskController@updateStatus');
+
+Route::get('/showcrq',function(){
+    
+    //$showcrqs= App\Crq::find($id);
+    $showcrqs = App\Crq::all();
+    return view ('score.showcrq')->with(['showcrqs'=>$showcrqs]);
+});

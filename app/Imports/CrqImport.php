@@ -25,7 +25,6 @@ class CrqImport implements ToCollection, WithHeadingRow
         foreach($collection as $row)//วน loop เพื่อ create ขัอมูล
         {
             Crq::create([
-            'id' => $row['id'],
             'sap_id'=> $row['sap_id'],
             'full_name' => $row['full_name'],
             'subject'=> $row['subject'],

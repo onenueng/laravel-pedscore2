@@ -36,7 +36,8 @@
           onclickk="document.getElementById('delete-task-{{ $task->id }}').submit()"
         >Delete</button>
       @endif 
-    </td>     </tr>
+    </td>     
+    </tr>
   @endforeach
   </tbody>
 </table>

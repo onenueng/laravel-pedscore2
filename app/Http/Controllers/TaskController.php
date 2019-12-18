@@ -83,11 +83,11 @@ class TaskController extends Controller
             $crqimport = new \App\Imports\CrqImport(); 
             $crqimport->import(storage_path('app/'.$path));
 
-            Log::info('Showing crq data for user: '.$crqimport);
+            //Log::info('Showing crq data for user: '.$crqimport);
                   
-            return Storage::url($path); //return url ที่เข้าถึง file นั้นมาให้
+            //return Storage::url($path); //return url ที่เข้าถึง file นั้นมาให้
 
-            return $crqimport;
+            //return $crqimport;
             
         }else{
             return 'no file';
